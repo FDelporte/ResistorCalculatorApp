@@ -8,29 +8,63 @@ import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
-public class BasicView extends View {
+public class ColorView extends View {
 
-    private final ComboBox<ColorCode> band1;
-    private final ComboBox<ColorCode> band2;
-    private final ComboBox<ColorCode> band3;
-    private final ComboBox<ColorCode> band4;
-    private final ComboBox<ColorCode> band5;
-    private final ComboBox<ColorCode> band6;
+    private final Button bt4Bands;
+    private final Button bt5Bands;
+    private final Button bt6Bands;
+
+    private final HBox holderBands;
 
     private final Label result;
 
-    public BasicView() {
+    public ColorView() {
+        this.getStylesheets().add("colorView.css");
+
+        VBox holder = new VBox();
+        holder.setSpacing(10);
+        holder.prefWidthProperty().bind(this.widthProperty());
+        this.getChildren().add(holder);
+
+        HBox buttonHolder = new HBox();
+        buttonHolder.prefWidthProperty().bind(holder.widthProperty());
+        buttonHolder.setSpacing(10);
+        buttonHolder.setAlignment(Pos.CENTER);
+        this.bt4Bands = new Button("4 Bands");
+        this.bt4Bands.setStyle("-fx-min-height: 40px; -fx-min-width: 90px;");
+        this.bt4Bands.setOnAction((e) -> this.drawBands(4));
+        this.bt5Bands = new Button("5 Bands");
+        this.bt5Bands.setStyle("-fx-min-height: 40px; -fx-min-width: 90px;");
+        this.bt5Bands.setOnAction((e) -> this.drawBands(5));
+        this.bt6Bands = new Button("6 Bands");
+        this.bt6Bands.setStyle("-fx-min-height: 40px; -fx-min-width: 90px;");
+        this.bt6Bands.setOnAction((e) -> this.drawBands(6));
+        buttonHolder.getChildren().addAll(this.bt4Bands, this.bt5Bands, this.bt6Bands);
+        holder.getChildren().add(buttonHolder);
+
+        this.holderBands = new HBox();
+        this.holderBands.prefWidthProperty().bind(holder.widthProperty());
+        this.holderBands.setSpacing(5);
+        this.holderBands.setAlignment(Pos.CENTER);
+        holder.getChildren().add(this.holderBands);
+
+        this.drawBands(4);
 
         Label title = new Label("Resistor value calculator (3, 4, 5 or 6 bands)");
         title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold");
@@ -40,36 +74,8 @@ public class BasicView extends View {
         colorSelection.setSpacing(10);
         getChildren().add(colorSelection);
 
-        band1 = new ComboBox<>();
-        band1.setCellFactory(cellFactory);
-        band1.getItems().setAll(ColorCode.values());
-        band1.setOnAction(this::calculateValue);
-        band2 = new ComboBox<>();
-        band2.setCellFactory(cellFactory);
-        band2.getItems().setAll(ColorCode.values());
-        band2.setOnAction(this::calculateValue);
-        band3 = new ComboBox<>();
-        band3.setCellFactory(cellFactory);
-        band3.getItems().setAll(ColorCode.values());
-        band3.setOnAction(this::calculateValue);
-        band4 = new ComboBox<>();
-        band4.setCellFactory(cellFactory);
-        band4.getItems().setAll(ColorCode.values());
-        band4.setOnAction(this::calculateValue);
-        band5 = new ComboBox<>();
-        band5.setCellFactory(cellFactory);
-        band5.getItems().setAll(ColorCode.values());
-        band5.setOnAction(this::calculateValue);
-        band6 = new ComboBox<>();
-        band6.setCellFactory(cellFactory);
-        band6.getItems().setAll(ColorCode.values());
-        band6.setOnAction(this::calculateValue);
-
         Button clearButton = new Button("Clear");
         clearButton.setOnAction(this::clear);
-
-        colorSelection.getChildren().addAll(band1, band2, band3,
-                band4, band5, band6, clearButton);
 
         result = new Label();
         result.setStyle("-fx-font-size: 14px; -fx-font-weight: bold");
@@ -77,6 +83,36 @@ public class BasicView extends View {
 
 
     }
+
+    private void drawBands(int numberOfBands) {
+        this.holderBands.getChildren().clear();
+
+        for (int i = 1; i <= numberOfBands; i++) {
+            VBox holderColors = new VBox();
+            holderColors.setSpacing(10);
+            this.holderBands.getChildren().add(holderColors);
+
+            ToggleGroup toggleGroup = new ToggleGroup();
+            for (ColorCode colorCode : Arrays.stream(ColorCode.values())
+                    .filter(c -> !c.equals(ColorCode.NONE))
+                    .collect(Collectors.toList())) {
+                ToggleButton color = new ToggleButton();
+                color.setToggleGroup(toggleGroup);
+                if (colorCode.equals(ColorCode.BLACK)) {
+                    color.setSelected(true);
+                }
+                color.setOnAction(this::calculateValue);
+                color.getStyleClass().add("colorButton");
+                color.setStyle("-fx-background-color: " + this.getHexColor(colorCode.getColor()));
+                holderColors.getChildren().add(color);
+            }
+        }
+    }
+
+    private String getHexColor(Integer value) {
+        return value == null ? "" : String.format("#%06X", (0xFFFFFF & value));
+    }
+
 
     /**
      * Callback to render the items in the dropdown list with a color box and the name of the color.
@@ -121,6 +157,7 @@ public class BasicView extends View {
 
         setAllComboBoxColors();
 
+        /*
         if (band1.getValue() != null) {
             colors.add(band1.getValue());
         } else {
@@ -157,18 +194,19 @@ public class BasicView extends View {
         } else {
             calculateValue(colors);
         }
+        */
     }
 
     /**
      * Show the selected color for all the combo boxes.
      */
     private void setAllComboBoxColors() {
-        setComboBoxColor(band1);
+        /*setComboBoxColor(band1);
         setComboBoxColor(band2);
         setComboBoxColor(band3);
         setComboBoxColor(band4);
         setComboBoxColor(band5);
-        setComboBoxColor(band6);
+        setComboBoxColor(band6);*/
     }
 
     /**
@@ -212,12 +250,12 @@ public class BasicView extends View {
      * @param actionEvent
      */
     private void clear(ActionEvent actionEvent) {
-        band1.setValue(null);
+        /*band1.setValue(null);
         band2.setValue(null);
         band3.setValue(null);
         band4.setValue(null);
         band5.setValue(null);
-        band6.setValue(null);
+        band6.setValue(null);*/
 
         setAllComboBoxColors();
 

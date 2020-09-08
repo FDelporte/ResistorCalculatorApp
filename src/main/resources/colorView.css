@@ -1,0 +1,11 @@
+.colorButton {
+  -fx-font-size: 10px;
+  -fx-min-height: 20px; -fx-max-height: 20px;
+  -fx-min-width: 50px; -fx-max-width: 50px;
+  -fx-border-width: 0px;
+}
+
+.colorButton:selected {
+  -fx-border-width: 3px;
+  -fx-border-color: black white;
+}

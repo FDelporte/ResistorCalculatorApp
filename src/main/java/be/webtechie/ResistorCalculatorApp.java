@@ -10,7 +10,7 @@ public class ResistorCalculatorApp extends MobileApplication {
 
     @Override
     public void init() {
-        addViewFactory(HOME_VIEW, BasicView::new);
+        addViewFactory(HOME_VIEW, ColorView::new);
     }
 
     @Override
