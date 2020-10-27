@@ -1,7 +1,19 @@
+.bandName {
+  -fx-font-size: 12px;
+}
+
+.result {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-min-height: 100px; -fx-max-height: 100px;
+  -fx-min-width: 300px; -fx-max-width: 200px;
+  -fx-margin-left: 20px;
+}
+
 .colorButton {
   -fx-font-size: 10px;
-  -fx-min-height: 20px; -fx-max-height: 20px;
-  -fx-min-width: 50px; -fx-max-width: 50px;
+  -fx-min-height: 25px; -fx-max-height: 25px;
+  -fx-min-width: 25px; -fx-max-width: 25px;
   -fx-border-width: 0px;
 }
 
