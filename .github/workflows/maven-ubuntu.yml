@@ -23,6 +23,8 @@ jobs:
         architecture: x64
     - name: Setup GraalVM environment
       uses: DeLaGuardo/setup-graalvm@2.0
+      with:
+        graalvm-version: '20.2.0.java11'
     - name: Make staging directory
       run: mkdir staging
     - name: Build JAR with Maven
