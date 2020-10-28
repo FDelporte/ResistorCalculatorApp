@@ -22,11 +22,9 @@ jobs:
         java-version: 15
         architecture: x64
     - name: Setup GraalVM environment
-      uses: ayltai/setup-graalvm@v1
+      uses: rtc11/setup-graalvm@master
       with:
-        java-version: 11
-        graalvm-version: 20.2.0
-        native-image: true
+        args: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java11-linux-amd64-20.2.0.tar.gz
     - name: Make staging directory
       run: mkdir staging
     - name: Build JAR with Maven
