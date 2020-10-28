@@ -2,20 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gluonhq</groupId>
-    <artifactId>single-view-example</artifactId>
+    <groupId>be.webtechie</groupId>
+    <artifactId>resistor-calculator-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>HelloGluon</name>
+    <name>Resistor Calculator</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <javafx.version>14.0.2</javafx.version>
-        <attach.version>4.0.8</attach.version>
-        <client.plugin.version>0.1.31</client.plugin.version>
-        <javafx.plugin.version>0.0.4</javafx.plugin.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <javafx.version>15</javafx.version>
+        <attach.version>4.0.9</attach.version>
+        <client.plugin.version>0.1.33</client.plugin.version>
+        <javafx.plugin.version>0.0.5</javafx.plugin.version>
         <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
     </properties>
 
@@ -71,13 +70,6 @@
         </repository>
     </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>gluon-releases</id>
-            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
     <build>
         <plugins>
             <plugin>
@@ -105,7 +97,6 @@
                         <list>display</list>
                         <list>lifecycle</list>
                         <list>statusbar</list>
-                        <list>storage</list>
                     </attachList>
                     <mainClass>${mainClassName}</mainClass>
                 </configuration>
@@ -132,12 +123,6 @@
                 <dependency>
                     <groupId>com.gluonhq.attach</groupId>
                     <artifactId>lifecycle</artifactId>
-                    <version>${attach.version}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>storage</artifactId>
                     <version>${attach.version}</version>
                     <classifier>desktop</classifier>
                 </dependency>
