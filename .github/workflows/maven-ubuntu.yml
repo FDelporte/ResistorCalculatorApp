@@ -21,10 +21,18 @@ jobs:
       with:
         java-version: 15
         architecture: x64
-    - name: Build with Maven
+    - name: Setup GraalVM environment
+      uses: DeLaGuardo/setup-graalvm@2.0
+    - name: Make staging directory
+      run: mkdir staging
+    - name: Build JAR with Maven
       run: mvn -B package --file pom.xml
-    - name: Move to staging
-      run: mkdir staging && cp target/*.jar staging
+    - name: Copy JAR to staging
+      run: cp target/*.jar staging
+    - name: Build as native application with Gluon
+      run: mvn clean client:build
+    - name: Copy native client to staging
+      run: cp target/client/* staging
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
