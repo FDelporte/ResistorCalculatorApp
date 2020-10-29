@@ -16,8 +16,15 @@ echo "GRAALVM_HOME=$GRAALVM_HOME"
 echo "JAVA_HOME=$JAVA_HOME"
 echo "PATH=$PATH"
 
+echo "--------------------------------------------------"
 echo "JAVA version"
 sh -c "java -version"
 
+echo "--------------------------------------------------"
 echo "MAVEN version"
 sh -c "mvn -version"
+
+echo "--------------------------------------------------"
+sh -c "ls -l /"
+sh -c "ls -l graalvm"
+echo "--------------------------------------------------"
