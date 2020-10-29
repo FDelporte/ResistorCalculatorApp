@@ -1,11 +1,11 @@
-package be.webtechie.screen;
+package be.webtechie.view;
 
 import be.webtechie.event.AppEventListener;
 import be.webtechie.resistorcalculator.definition.ColorCode;
 import be.webtechie.resistorcalculator.util.Calculate;
 import be.webtechie.resistorcalculator.util.Convert;
 import be.webtechie.resistorcalculator.util.ResistorValue;
-import be.webtechie.view.ColorBandSelection;
+import be.webtechie.element.ColorBandSelection;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
@@ -14,7 +14,7 @@ import java.util.List;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class BandCalculator extends View implements AppEventListener {
+public class ColorBandCalculator extends View implements AppEventListener {
 
     private final ColorBandSelection band1;
     private final ColorBandSelection band2;
@@ -25,8 +25,8 @@ public class BandCalculator extends View implements AppEventListener {
 
     private final Label result;
 
-    public BandCalculator() {
-        this.getStylesheets().add("colorView.css");
+    public ColorBandCalculator() {
+        this.getStylesheets().add("be/webtechie/view/colorBandCalculator.css");
 
         VBox holder = new VBox();
         holder.setSpacing(10);
@@ -99,9 +99,8 @@ public class BandCalculator extends View implements AppEventListener {
 
     @Override
     protected void updateAppBar(AppBar appBar) {
-        appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> System.out.println("Menu")));
-        appBar.setTitleText("Resistor calculator");
+        appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> getApplication().getDrawer().open()));
+        appBar.setTitleText("Resistor color calculator");
         appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> System.out.println("Search")));
     }
-
 }

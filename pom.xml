@@ -97,6 +97,7 @@
                         <list>display</list>
                         <list>lifecycle</list>
                         <list>statusbar</list>
+                        <list>storage</list>
                     </attachList>
                     <mainClass>${mainClassName}</mainClass>
                 </configuration>
@@ -123,6 +124,12 @@
                 <dependency>
                     <groupId>com.gluonhq.attach</groupId>
                     <artifactId>lifecycle</artifactId>
+                    <version>${attach.version}</version>
+                    <classifier>desktop</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>com.gluonhq.attach</groupId>
+                    <artifactId>storage</artifactId>
                     <version>${attach.version}</version>
                     <classifier>desktop</classifier>
                 </dependency>

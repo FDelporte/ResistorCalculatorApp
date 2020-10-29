@@ -1,4 +1,4 @@
-package be.webtechie.view;
+package be.webtechie.element;
 
 import be.webtechie.resistorcalculator.definition.ColorCode;
 import javafx.scene.control.ToggleButton;

@@ -1,4 +1,4 @@
-package be.webtechie.view;
+package be.webtechie.element;
 
 import be.webtechie.event.AppEventListener;
 import be.webtechie.resistorcalculator.definition.ColorCode;
@@ -37,6 +37,12 @@ public class ColorBandSelection extends VBox {
         for (ColorCode colorCode : Arrays.stream(ColorCode.values())
                 .filter(c -> !c.equals(ColorCode.NONE))
                 .collect(Collectors.toList())) {
+            if (this.bandNumber == 5 && colorCode.getTolerance() == null) {
+                colorCode = ColorCode.NONE;
+            }
+            if (this.bandNumber == 6 && colorCode.getTemperatureCoefficient() == null) {
+                colorCode = ColorCode.NONE;
+            }
             ColorToggleButton tbColor = new ColorToggleButton(toggleGroup, colorCode);
             tbColor.setOnAction(this::selectionChange);
             colorHolder.getChildren().add(tbColor);
