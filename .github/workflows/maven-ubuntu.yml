@@ -17,9 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup GraalVM environment
-      uses: rtc11/setup-graalvm@master
-      with:
-        args: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java11-linux-amd64-20.2.0.tar.gz
+      run: ./.github/scripts/setup-graalvm.sh
+      shell: bash
     - name: Make staging directory
       run: mkdir staging
     - name: Build JAR with Maven
