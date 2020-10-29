@@ -15,3 +15,9 @@ sh -c "export PATH=$PATH:$GRAALVM_HOME/bin"
 echo "GRAALVM_HOME=$GRAALVM_HOME"
 echo "JAVA_HOME=$JAVA_HOME"
 echo "PATH=$PATH"
+
+echo "JAVA version"
+sh -c "java -version"
+
+echo "MAVEN version"
+sh -c "mvn -version"
