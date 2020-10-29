@@ -24,7 +24,7 @@ jobs:
     - name: Make staging directory
       run: mkdir staging
     - name: Build JAR with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package -e -X --file pom.xml
     - name: Copy JAR to staging
       run: cp target/*.jar staging
     - name: Build as native application with Gluon
