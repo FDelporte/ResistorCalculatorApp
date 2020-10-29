@@ -92,7 +92,7 @@
                 <artifactId>client-maven-plugin</artifactId>
                 <version>${client.plugin.version}</version>
                 <configuration>
-                    <graalvmHome>/graalvm</graalvmHome>
+                    <graalvmHome>/home/runner/work/ResistorCalculatorApp/ResistorCalculatorApp/graalvm</graalvmHome>
                     <target>${client.target}</target>
                     <attachList>
                         <list>display</list>
