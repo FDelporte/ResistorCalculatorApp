@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v1
@@ -21,10 +19,15 @@ jobs:
         java-version: 11
         java-package: jdk
         architecture: x64
-    - name: Change script permissions
-      run: chmod +x ./.github/scripts/setup-graalvm.sh
+    - name: Change GraalVM script permissions
+      run: chmod +x ./.github/scripts/setup-ubuntu-graalvm.sh
     - name: Setup GraalVM environment
-      run: ./.github/scripts/setup-graalvm.sh
+      run: ./.github/scripts/setup-ubuntu-graalvm.sh
+      shell: bash
+    - name: Change libraries script permissions
+      run: chmod +x ./.github/scripts/setup-ubuntu-libraries.sh
+    - name: Setup libraries
+      run: ./.github/scripts/setup-ubuntu-libraries.sh
       shell: bash
     - name: Make staging directory
       run: mkdir staging
