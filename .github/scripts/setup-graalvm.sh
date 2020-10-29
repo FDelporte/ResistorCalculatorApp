@@ -25,5 +25,5 @@ echo "MAVEN version"
 sh -c "mvn -version"
 
 echo "--------------------------------------------------"
-sh -c "ls -lR /home/"
+sh -c "find / -iname graalvm"
 echo "--------------------------------------------------"
