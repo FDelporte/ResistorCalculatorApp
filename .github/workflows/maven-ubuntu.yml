@@ -38,7 +38,7 @@ jobs:
     - name: Build as native application with Gluon
       run: mvn clean client:build
     - name: Copy native client to staging
-      run: cp target/client/* staging
+      run: cp -r target/client/* staging
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
