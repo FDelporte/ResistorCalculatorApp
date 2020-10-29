@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Change script permissions
+      run: chmod +x ./.github/scripts/setup-graalvm.sh
     - name: Setup GraalVM environment
       run: ./.github/scripts/setup-graalvm.sh
       shell: bash
