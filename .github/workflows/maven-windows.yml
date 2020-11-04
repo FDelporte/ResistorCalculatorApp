@@ -20,7 +20,10 @@ jobs:
         java-package: jdk
         architecture: x64
     - name: Setup GraalVM environment
-      run: ./.github/scripts/setup-windows-graalvm.sh
+      run: ./.github/scripts/setup-windows-graalvm-download.sh
+      shell: bash
+    - name: Setup GraalVM environment
+      run: ./.github/scripts/setup-windows-graalvm-paths.sh
       shell: bash
     - name: Make staging directory
       run: mkdir staging
