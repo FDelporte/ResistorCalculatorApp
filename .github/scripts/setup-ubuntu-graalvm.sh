@@ -10,8 +10,8 @@ sh -c "rm graalvm.tar.gz"
 
 echo "--- Setting environment variables ---"
 export GRAALVM_HOME=~/graalvm
-export JAVA_HOME=~/graalvm
-export PATH=~/graalvm/bin:$PATH
+#export JAVA_HOME=$GRAALVM_HOME
+export PATH=$PATH:$GRAALVM_HOME/bin
 
 echo "--- Checking environment variables ---"
 echo "GRAALVM_HOME=$GRAALVM_HOME"
