@@ -8,13 +8,11 @@ sh -c "mkdir C:/graalvm"
 sh -c "unzip graalvm.zip -d C:/graalvm"
 
 echo "Exporting environment variables."
-sh -c "export GRAALVM_HOME=C:graalvm/graalvm-ce-java11-20.2.0/"
-sh -c "export JAVA_HOME=$GRAALVM_HOME"
-sh -c "export PATH=$PATH:$GRAALVM_HOME/bin"
+sh -c "setx /M PATH 'C:\graalvm\graalvm-ce-java11-20.2.0\bin;%PATH%'"
+sh -c "setx /M JAVA_HOME 'C:\graalvm\graalvm-ce-java11-20.2.0\'"
 
-echo "GRAALVM_HOME=$GRAALVM_HOME"
-echo "JAVA_HOME=$JAVA_HOME"
-echo "PATH=$PATH"
+sh -c "echo %PATH%"
+sh -c "echo %JAVA_HOME%"
 
 echo "--------------------------------------------------"
 echo "JAVA version"
