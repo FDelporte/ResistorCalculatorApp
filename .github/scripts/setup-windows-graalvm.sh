@@ -6,7 +6,7 @@ sh -c "curl -sL https://github.com/graalvm/graalvm-ce-builds/releases/download/v
 echo "Extracting"
 sh -c "mkdir C:\graalvm"
 #sh -c "jar xf test.zip"
-sh -c "unzip -Path 'graalvm.zip' -DestinationPath 'C:\graalvm'"
+sh -c "unzip graalvm.zip -d C:\graalvm"
 
 echo "Exporting environment variables."
 sh -c "export GRAALVM_HOME=graalvm"
