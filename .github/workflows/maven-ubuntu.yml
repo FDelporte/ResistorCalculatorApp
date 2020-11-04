@@ -21,14 +21,6 @@ jobs:
         architecture: x64
     - name: Change GraalVM script permissions
       run: chmod +x ./.github/scripts/setup-ubuntu-graalvm.sh
-#    - name: Setup GraalVM environment
-#      run: .github/scripts/setup-ubuntu-graalvm.sh
-#      shell: bash
-    - name: GRAALVM_HOME set
-      run: export GRAALVM_HOME=~/graalvm
-      shell: bash
-    - name: GRAALVM_HOME test
-      run: echo "GRAALVM_HOME=$GRAALVM_HOME"
       shell: bash
     - name: Change libraries script permissions
       run: chmod +x ./.github/scripts/setup-ubuntu-libraries.sh
@@ -43,6 +35,8 @@ jobs:
       run: cp target/*.jar staging
     - name: Build as native application with Gluon
       run: mvn clean client:build
+      env:
+        GRAALVM_HOME: ~/graalvm
     - name: Copy native client to staging
       run: cp -r target/client/* staging
     - name: Upload
