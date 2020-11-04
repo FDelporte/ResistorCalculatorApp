@@ -22,7 +22,7 @@ jobs:
     - name: Change GraalVM script permissions
       run: chmod +x ./.github/scripts/setup-ubuntu-graalvm.sh
     - name: Setup GraalVM environment
-      run: ./.github/scripts/setup-ubuntu-graalvm.sh
+      run: source .github/scripts/setup-ubuntu-graalvm.sh
       shell: bash
     - name: Change libraries script permissions
       run: chmod +x ./.github/scripts/setup-ubuntu-libraries.sh
