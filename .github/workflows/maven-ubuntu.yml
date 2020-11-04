@@ -14,19 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
+    - name: Setup GraalVM environment
+      uses: DeLaGuardo/setup-graalvm@2.0
       with:
-        java-version: 11
-        java-package: jdk
-        architecture: x64
-    - name: Change GraalVM script permissions
-      run: chmod +x ./.github/scripts/setup-ubuntu-graalvm.sh
-      shell: bash
-    - name: Change libraries script permissions
-      run: chmod +x ./.github/scripts/setup-ubuntu-libraries.sh
-    - name: Setup libraries
-      run: ./.github/scripts/setup-ubuntu-libraries.sh
-      shell: bash
+        graalvm-version: 20.2.0.java11
+    - name: Install libraries
+      run: sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
     - name: Make staging directory
       run: mkdir staging
     - name: Build JAR with Maven
@@ -36,7 +29,7 @@ jobs:
     - name: Build as native application with Gluon
       run: mvn clean client:build
       env:
-        GRAALVM_HOME: ~/graalvm
+        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
     - name: Copy native client to staging
       run: cp -r target/client/* staging
     - name: Upload
