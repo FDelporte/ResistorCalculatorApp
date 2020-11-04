@@ -1,6 +1,8 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
+# Inspired by https://github.com/Srijan-Sengupta/Purulia-Pollution-Check/blob/f0f7a44f9a5e1251242aace866c0372f859eafbc/.github/workflows/android.yml
+
 name: Java CI with Maven
 
 on:
@@ -26,11 +28,15 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Copy JAR to staging
       run: cp target/*.jar staging
-    - name: Build as native application with Gluon
+    - name: Build as Linux application with Gluon
       run: mvn clean client:build
       env:
         GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
-    - name: Copy native client to staging
+    - name: Build as Android application with Gluon
+      run: mvn -Pandroid client:build
+      env:
+        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
+    - name: Copy native clients to staging
       run: cp -r target/client/* staging
     - name: Upload
       uses: actions/upload-artifact@v2
