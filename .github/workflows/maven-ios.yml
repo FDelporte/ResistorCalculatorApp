@@ -27,8 +27,12 @@ jobs:
       run: mvn -B package
     - name: Copy JAR to staging
       run: cp target/*.jar staging
-    - name: Build as Linux application with Gluon
-      run: mvn clean -Pios client:build & mvn -Pios client:package
+    - name: Build as iOS application with Gluon
+      run: mvn -Pios client:build
+      env:
+        GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/
+    - name: Package as iOS application with Gluon
+      run: mvn -Pios client:package
       env:
         GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/
     - name: Copy native client to staging

@@ -33,7 +33,11 @@ jobs:
     - name: Copy JAR to staging
       run: cp target/*.jar staging
     - name: Build as Android application with Gluon
-      run: mvn clean -Pandroid client:build & mvn -Pandroid client:package
+      run: mvn -Pandroid client:build
+      env:
+        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
+    - name: Package as Android application with Gluon
+      run: mvn -Pandroid client:package
       env:
         GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
 #        ANDROID_SDK:
