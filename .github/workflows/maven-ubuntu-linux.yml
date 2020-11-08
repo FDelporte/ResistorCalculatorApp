@@ -31,6 +31,10 @@ jobs:
     - name: Copy JAR to staging
       run: cp target/*.jar staging
     - name: Build as Linux application with Gluon
+      run: mvn client:build
+      env:
+        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
+    - name: Package as Linux application with Gluon
       run: mvn client:package
       env:
         GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
