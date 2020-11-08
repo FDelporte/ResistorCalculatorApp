@@ -23,6 +23,10 @@ jobs:
 #      run: find / -iname graal
     - name: Make staging directory
       run: mkdir staging
+    - name: Build JAR with Maven
+      run: mvn -B package
+    - name: Copy JAR to staging
+      run: cp target/*.jar staging
     - name: Build as Linux application with Gluon
       run: mvn clean -Pios client:build & mvn -Pios client:package
       env:

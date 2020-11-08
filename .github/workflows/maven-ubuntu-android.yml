@@ -28,6 +28,10 @@ jobs:
 #      uses: android-actions/setup-android@v2
     - name: Make staging directory
       run: mkdir staging
+    - name: Build JAR with Maven
+      run: mvn -B package
+    - name: Copy JAR to staging
+      run: cp target/*.jar staging
     - name: Build as Android application with Gluon
       run: mvn clean -Pandroid client:build & mvn -Pandroid client:package
       env:
