@@ -19,6 +19,8 @@ jobs:
       uses: DeLaGuardo/setup-graalvm@2.0
       with:
         graalvm-version: 20.2.0.java11
+    - name: find Graal
+      run: find / -iname graal
     - name: Make staging directory
       run: mkdir staging
     - name: Build as Linux application with Gluon
