@@ -15,14 +15,14 @@ jobs:
         uses: DeLaGuardo/setup-graalvm@2.0
         with:
           graalvm-version: 20.2.0.java11
-      - name: find Graal
-        run: dir /s/b /A:D "D:*graal*"
+#      - name: find Graal
+#        run: dir /s/b /A:D "D:*graal*"
       - name: Make staging directory
         run: mkdir staging
       - name: Build as Windows application with Gluon
         run: mvn clean client:build & mvn client:package
         env:
-          GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
+          GRAALVM_HOME: C:\hostedtoolcache\windows\GraalVM\20.2.0-java11\x64
       - name: Copy native client to staging
         run: cp -r target/client/* staging
       - name: Upload
