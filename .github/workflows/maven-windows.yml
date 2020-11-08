@@ -19,8 +19,12 @@ jobs:
 #        run: dir /s/b /A:D "D:*graal*"
       - name: Make staging directory
         run: mkdir staging
+      - name: Build JAR with Maven
+        run: mvn -B package
+      - name: Copy JAR to staging
+        run: cp target/*.jar staging
       - name: Build as Windows application with Gluon
-        run: mvn clean client:build & mvn client:package
+        run: mvn client:build & mvn client:package
         env:
           GRAALVM_HOME: C:\hostedtoolcache\windows\GraalVM\20.2.0-java11\x64
       - name: Copy native client to staging
