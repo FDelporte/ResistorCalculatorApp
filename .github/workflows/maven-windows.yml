@@ -16,7 +16,7 @@ jobs:
         with:
           graalvm-version: 20.2.0.java11
       - name: find Graal
-        run: dir /s/b /A:C "C:*graal*"
+        run: dir /s/b /A:D "D:*graal*"
       - name: Make staging directory
         run: mkdir staging
       - name: Build as Windows application with Gluon
