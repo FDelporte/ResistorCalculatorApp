@@ -1,4 +1,4 @@
-name: Java CI with Maven for Windows executable build
+name: Windows
 
 on:
   push:
@@ -23,12 +23,8 @@ jobs:
         run: mvn -B package
       - name: Copy JAR to staging
         run: cp target/*.jar staging
-      - name: Build as Windows application with Gluon
-        run: mvn client:build
-        env:
-          GRAALVM_HOME: C:\hostedtoolcache\windows\GraalVM\20.2.0-java11\x64
-      - name: Package as Windows application with Gluon
-        run: mvn client:package
+      - name: Build and package as Windows application with Gluon
+        run: mvn client:build client:package
         env:
           GRAALVM_HOME: C:\hostedtoolcache\windows\GraalVM\20.2.0-java11\x64
       - name: Copy native client to staging
