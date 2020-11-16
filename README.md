@@ -30,7 +30,7 @@ The application provides two views.
 
 Please checkout the prerequisites to run this application as a Maven project [at the Gluon website](https://github.com/gluonhq/client-maven-plugin#requirements).
 
-## Instructions
+## How to use on development PC
 
 > **Note**: The following are command line instructions. For IDE specific instructions please checkout
 [IDE documentation](https://docs.gluonhq.com/client/#_ide) of the client plugin.
@@ -52,6 +52,10 @@ mvn client:build client:run
 > **Note**: The above client commands are target-platform dependent and might change depending on the platform.
 For more details, please check
 [Client Maven Goals](https://github.com/gluonhq/client-maven-plugin#2-goals).
+
+## GitHub Actions
+
+* [Security hardening for GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/security-hardening-for-github-actions)
 
 ## Configuration
 

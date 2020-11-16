@@ -1,5 +1,6 @@
 package be.webtechie;
 
+import be.webtechie.view.About;
 import be.webtechie.view.ColorBandCalculator;
 import be.webtechie.view.LedResistorCalculator;
 import com.gluonhq.charm.glisten.application.MobileApplication;
@@ -12,11 +13,13 @@ public class ResistorCalculatorApp extends MobileApplication {
 
     public static final String PRIMARY_VIEW = HOME_VIEW;
     public static final String SECONDARY_VIEW = "LEDResistorCalculator";
+    public static final String THIRD_VIEW = "About";
 
     @Override
     public void init() {
         addViewFactory(PRIMARY_VIEW, ColorBandCalculator::new);
         addViewFactory(SECONDARY_VIEW, LedResistorCalculator::new);
+        addViewFactory(THIRD_VIEW, About::new);
         DrawerManager.buildDrawer(this);
     }
 
