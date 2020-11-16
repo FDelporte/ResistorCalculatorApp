@@ -22,10 +22,18 @@ jobs:
       uses: DeLaGuardo/setup-graalvm@2.0
       with:
         graalvm-version: 20.2.0.java11
-#    - name: find Graal
-#      run: find / -iname graal
     - name: Make staging directory
       run: mkdir staging
+    - uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.CERTIFICATES_FILE_BASE64 }}
+        p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
+    - uses: Apple-Actions/download-provisioning-profiles@v1
+      with:
+        bundle-id: be.webtechie.ResistorCalculatorApp
+        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
     - name: Build JAR with Maven
       run: mvn -B package
     - name: Copy JAR to staging
@@ -34,6 +42,8 @@ jobs:
       run: mvn -Pios client:build client:package
       env:
         GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/
+        IOS_SIGNING_IDENTITY: ${{ secrets.IOS_SIGNING_IDENTITY }}
+        IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
     - name: Copy native client to staging
       run: cp -r target/client/* staging
     - name: Upload
@@ -41,3 +51,9 @@ jobs:
       with:
         name: Package
         path: staging
+    - uses: Apple-Actions/upload-testflight-build@master
+      with:
+        app-path: target/client/arm64-ios/Resistor\ Calculator.ipa
+        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
