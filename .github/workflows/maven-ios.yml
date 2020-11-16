@@ -46,14 +46,14 @@ jobs:
         IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
 #    - name: Copy native client to staging
 #      run: cp -r target/client/* staging
-    - name: Upload
-      uses: actions/upload-artifact@v2
-      with:
-        name: Package
-        path: staging
+#    - name: Upload
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: Package
+#        path: staging
     - uses: Apple-Actions/upload-testflight-build@master
       with:
-        app-path: target/client/arm64-ios/Resistor\ Calculator.ipa
+        app-path: target/client/arm64-ios/Resistor Calculator.ipa
         issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
         api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
         api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
