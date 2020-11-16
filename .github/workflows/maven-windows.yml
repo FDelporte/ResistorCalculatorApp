@@ -1,4 +1,5 @@
 # https://github.com/marketplace/actions/setup-msbuild
+# https://docs.gluonhq.com/#_windows
 
 name: Windows
 
@@ -19,14 +20,10 @@ jobs:
         uses: DeLaGuardo/setup-graalvm@master
         with:
           graalvm-version: 20.2.0.java11
-      - name: find cl.exe
-        run: dir /s/b /A:D "D:*cl.exe*"
       - name: Make staging directory
         run: mkdir staging
-      - name: Build JAR with Maven
-        run: mvn -B package
-      - name: Copy JAR to staging
-        run: cp target/*.jar staging
+      - name: Run with Visual Studio terminal
+        run: cmd.exe /k "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       - name: Build and package as Windows application with Gluon
         run: mvn client:build client:package
         env:
