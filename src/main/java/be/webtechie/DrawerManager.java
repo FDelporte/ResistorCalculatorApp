@@ -2,6 +2,7 @@ package be.webtechie;
 
 import static be.webtechie.ResistorCalculatorApp.PRIMARY_VIEW;
 import static be.webtechie.ResistorCalculatorApp.SECONDARY_VIEW;
+import static be.webtechie.ResistorCalculatorApp.THIRD_VIEW;
 
 import com.gluonhq.attach.lifecycle.LifecycleService;
 import com.gluonhq.attach.util.Platform;
@@ -35,7 +36,11 @@ public class DrawerManager {
                 new ViewItem(
                         "LED resistor calculator",
                         MaterialDesignIcon.DASHBOARD.graphic(),
-                        SECONDARY_VIEW));
+                        SECONDARY_VIEW),
+                new ViewItem(
+                        "About",
+                        MaterialDesignIcon.DASHBOARD.graphic(),
+                        THIRD_VIEW));
 
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());

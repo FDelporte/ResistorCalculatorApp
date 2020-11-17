@@ -13,9 +13,10 @@
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>15</javafx.version>
         <attach.version>4.0.9</attach.version>
-        <client.plugin.version>0.1.33</client.plugin.version>
+        <client.plugin.version>0.1.34</client.plugin.version>
         <javafx.plugin.version>0.0.5</javafx.plugin.version>
         <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
+        <skipIOSSigning>false</skipIOSSigning>
     </properties>
 
     <dependencies>
@@ -92,6 +93,7 @@
                 <artifactId>client-maven-plugin</artifactId>
                 <version>${client.plugin.version}</version>
                 <configuration>
+                    <verbose>false</verbose>
                     <target>${client.target}</target>
                     <attachList>
                         <list>display</list>
@@ -100,6 +102,12 @@
                         <list>storage</list>
                     </attachList>
                     <mainClass>${mainClassName}</mainClass>
+                    <releaseConfiguration>
+                        <bundleVersion>${env.GITHUB_RUN_ID}</bundleVersion>
+                        <skipSigning>${skipIOSSigning}</skipSigning>
+                        <providedSigningIdentity>${env.IOS_SIGNING_IDENTITY}</providedSigningIdentity>
+                        <providedProvisioningProfile>${env.IOS_PROVISIONING_PROFILE}</providedProvisioningProfile>
+                    </releaseConfiguration>
                 </configuration>
             </plugin>
         </plugins>
