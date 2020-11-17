@@ -24,7 +24,7 @@ public class DrawerManager {
         NavigationDrawer.Header header = new NavigationDrawer.Header(
                 "Resistor calculator",
                 "By webtechie.be",
-                new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("icon.png"))));
+                new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("resistor.jpg"))));
         drawer.setHeader(header);
 
         drawer.getItems().addAll(
