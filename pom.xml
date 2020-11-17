@@ -16,7 +16,7 @@
         <client.plugin.version>0.1.34</client.plugin.version>
         <javafx.plugin.version>0.0.5</javafx.plugin.version>
         <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
-        <skipIOSSigning>false</skipIOSSigning>
+        <skipIOSSigning>true</skipIOSSigning>
     </properties>
 
     <dependencies>
