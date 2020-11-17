@@ -1,15 +1,21 @@
+.mainbox {
+  -fx-spacing: 5px;
+  -fx-padding: 20 6 20 6;
+  -fx-alignment: top-center;
+  -fx-background-color: -primary-swatch-100;
+}
+
 .label {
-  -fx-font-size: 14px;
+  -fx-text-fill: -primary-swatch-800;
+  -fx-font-size: 1em;
   -fx-font-weight: bold;
-  -fx-min-height: 20px; -fx-max-height: 20px;
-  -fx-min-width: 300px; -fx-max-width: 200px;
 }
 
 .spinner {
   -fx-font-size: 14px;
   -fx-font-weight: bold;
   -fx-min-height: 30px; -fx-max-height: 30px;
-  -fx-min-width: 75px; -fx-max-width: 75px;
+  -fx-min-width: 100px; -fx-max-width: 100px;
 }
 
 .colorButton {
@@ -17,6 +23,13 @@
   -fx-min-height: 25px; -fx-max-height: 25px;
   -fx-min-width: 25px; -fx-max-width: 25px;
   -fx-border-width: 0px;
+}
+
+.result {
+  -fx-text-fill: -primary-swatch-800;
+  -fx-font-size: 1.2em;
+  -fx-font-weight: bold;
+  -fx-padding: 10 0 0 0;
 }
 
 .colorButton:selected {

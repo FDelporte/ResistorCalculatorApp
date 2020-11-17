@@ -18,42 +18,44 @@ public class LedResistorCalculator extends View {
     private final Label result;
 
     public LedResistorCalculator() {
-        this.getStylesheets().add("be/webtechie/view/ledResistorCalculator.css");
+        getStylesheets().add(ColorBandCalculator.class.getResource("ledResistorCalculator.css").toExternalForm());
 
         VBox holder = new VBox();
-        this.getChildren().add(holder);
+        holder.getStyleClass().add("mainbox");
         holder.setSpacing(10);
+        setCenter(holder);
 
         Label title = new Label("Led resistor calculator");
         title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold");
         holder.getChildren().add(title);
 
         holder.getChildren().add(new Label("Input voltage (V)"));
-        this.inputVoltage = new Spinner<>(0.1, 110, 3.3);
-        this.inputVoltage.setPrefWidth(80);
-        this.inputVoltage.setEditable(true);
-        this.inputVoltage.valueProperty().addListener((obs, oldValue, newValue) -> calculateValue());
-        holder.getChildren().add(this.inputVoltage);
+        inputVoltage = new Spinner<>(0.1, 110, 3.3);
+        inputVoltage.setPrefWidth(80);
+        inputVoltage.setEditable(true);
+        inputVoltage.valueProperty().addListener((obs, oldValue, newValue) -> calculateValue());
+        holder.getChildren().add(inputVoltage);
 
         holder.getChildren().add(new Label("Led voltage (V)"));
-        this.ledVoltage = new Spinner<>(0.1, 110, 2.2);
-        this.ledVoltage.setPrefWidth(80);
-        this.ledVoltage.setEditable(true);
-        this.ledVoltage.valueProperty().addListener((obs, oldValue, newValue) -> calculateValue());
-        holder.getChildren().add(this.ledVoltage);
+        ledVoltage = new Spinner<>(0.1, 110, 2.2);
+        ledVoltage.setPrefWidth(80);
+        ledVoltage.setEditable(true);
+        ledVoltage.valueProperty().addListener((obs, oldValue, newValue) -> calculateValue());
+        holder.getChildren().add(ledVoltage);
 
         holder.getChildren().add(new Label("Led current (A)"));
-        this.ledCurrent = new Spinner<>(0.001, 3, 0.02);
-        this.ledCurrent.setPrefWidth(80);
-        this.ledCurrent.setEditable(true);
-        this.ledCurrent.valueProperty().addListener((obs, oldValue, newValue) -> calculateValue());
-        holder.getChildren().add(this.ledCurrent);
+        ledCurrent = new Spinner<>(0.001, 3, 0.02);
+        ledCurrent.setPrefWidth(80);
+        ledCurrent.setEditable(true);
+        ledCurrent.valueProperty().addListener((obs, oldValue, newValue) -> calculateValue());
+        holder.getChildren().add(ledCurrent);
 
-        this.result = new Label();
-        this.result.setStyle("-fx-font-size: 18px; -fx-font-weight: bold");
-        holder.getChildren().add(this.result);
+        result = new Label();
+        result.setWrapText(true);
+        result.getStyleClass().add("result");
+        holder.getChildren().add(result);
 
-        this.calculateValue();
+        calculateValue();
     }
 
     /**
@@ -62,13 +64,13 @@ public class LedResistorCalculator extends View {
     private void calculateValue() {
         try {
             long value = Calculate.resistorForLed(
-                    this.inputVoltage.getValue(),
-                    this.ledVoltage.getValue(),
-                    this.ledCurrent.getValue());
+                    inputVoltage.getValue(),
+                    ledVoltage.getValue(),
+                    ledCurrent.getValue());
 
-            this.result.setText("A resistor with value " + Convert.toOhmString((double) value) + " is needed");
+            result.setText("A resistor with value " + Convert.toOhmString((double) value) + " is needed");
         } catch (IllegalArgumentException ex) {
-            this.result.setText(ex.getMessage());
+            result.setText(ex.getMessage());
         }
     }
 

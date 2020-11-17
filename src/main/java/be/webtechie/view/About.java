@@ -67,8 +67,6 @@ public class About extends View {
 
         VBox holder = new VBox();
         holder.getStyleClass().add("mainbox");
-        holder.setPadding(new Insets(5));
-        holder.setSpacing(15);
         holder.getChildren().addAll(about, buttons, cover, btWebtechie);
         setCenter(holder);
     }

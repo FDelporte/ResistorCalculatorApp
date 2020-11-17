@@ -6,9 +6,10 @@
 }
 
 .about {
-  -fx-font-size: 12px;
-  -fx-min-height: 150px; -fx-max-height: 150px;
-  -fx-min-width: 325px; -fx-max-width: 325px;
+  -fx-text-fill: -primary-swatch-800;
+  -fx-font-size: 1em;
+  -fx-font-weight: bold;
+  -fx-padding: 10 0 0 0;
 }
 
 .button {
