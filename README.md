@@ -58,7 +58,7 @@ For more details, please check
 Seperate GitHub Actions files are included with this project:
 
 * [maven-ios.yml](.github/workflows/maven-ios.yml): creates iPhone app, not fully working in this repository as no 
-Apple developer secrets are added, but you can use this as a reference to set this up.
+Apple developer secrets and other required settings are available here. But you can use this as a reference how to set this up.
 * [maven-ubuntu-linux.yml](.github/workflows/maven-ubuntu-linux.yml): creates JAR and native Linux x64 application.
 * [maven-ubuntu-android.yml](.github/workflows/maven-ubuntu-android.yml): creates Android APK application.
 * [maven-windows.yml](.github/workflows/maven-windows.yml): creates Windows x64 executable.
