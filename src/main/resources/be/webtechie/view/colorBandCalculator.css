@@ -1,19 +1,32 @@
+.mainbox {
+  -fx-spacing: 10px;
+  -fx-padding: 20 6 20 6;
+  -fx-alignment: top-center;
+  -fx-background-color: -primary-swatch-100;
+}
+
 .bandName {
-  -fx-font-size: 12px;
+  -fx-font-size: 1.1em;
+  -fx-padding: 2;
 }
 
 .result {
-  -fx-font-size: 14px;
+  -fx-text-fill: -primary-swatch-800;
+  -fx-font-size: 1.2em;
   -fx-font-weight: bold;
-  -fx-min-height: 100px; -fx-max-height: 100px;
-  -fx-min-width: 300px; -fx-max-width: 200px;
-  -fx-margin-left: 20px;
+  -fx-padding: 20 0 0 0;
+}
+
+.result:error {
+  -fx-text-fill: red;
+}
+
+.colorbox {
+  -fx-alignment: center-left;
 }
 
 .colorButton {
-  -fx-font-size: 10px;
-  -fx-min-height: 25px; -fx-max-height: 25px;
-  -fx-min-width: 25px; -fx-max-width: 25px;
+  -fx-font-size: 0px;
   -fx-border-width: 0px;
 }
 
