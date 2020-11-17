@@ -30,7 +30,7 @@ jobs:
         env:
           GRAALVM_HOME: C:\hostedtoolcache\windows\GraalVM\20.2.0-java11\x64
       - name: Copy native client to staging
-        run: cp -r target/client/* staging
+        run: cp -r target/client/x86_64-windows/*.exe staging
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
