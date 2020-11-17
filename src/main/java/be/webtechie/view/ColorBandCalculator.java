@@ -1,5 +1,6 @@
 package be.webtechie.view;
 
+import be.webtechie.element.Resistor;
 import be.webtechie.event.AppEventListener;
 import be.webtechie.resistorcalculator.definition.ColorCode;
 import be.webtechie.resistorcalculator.util.Calculate;
@@ -29,6 +30,8 @@ public class ColorBandCalculator extends View implements AppEventListener {
 
     private final Label result;
 
+    private final Resistor resistor;
+
     public ColorBandCalculator() {
         getStylesheets().add(ColorBandCalculator.class.getResource("colorBandCalculator.css").toExternalForm());
 
@@ -44,6 +47,11 @@ public class ColorBandCalculator extends View implements AppEventListener {
         band6 = new ColorBandSelection(6, this);
 
         holder.getChildren().addAll(band1, band2, band3, band4, band5, band6);
+
+        resistor = new Resistor();
+        resistor.setScaleY(0.8);
+        resistor.getStyleClass().add("resistor");
+        holder.getChildren().add(resistor);
 
         result = new Label();
         result.setWrapText(true);
@@ -79,6 +87,7 @@ public class ColorBandCalculator extends View implements AppEventListener {
             }
         }
         calculateValue(colors);
+        resistor.setColors(colors);
     }
 
     /**
