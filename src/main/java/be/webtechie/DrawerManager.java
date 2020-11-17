@@ -30,16 +30,16 @@ public class DrawerManager {
         drawer.getItems().addAll(
                 new ViewItem(
                         "Resistor color calculator",
-                        MaterialDesignIcon.HOME.graphic(),
+                        MaterialDesignIcon.COLOR_LENS.graphic(),
                         PRIMARY_VIEW,
                         ViewStackPolicy.SKIP),
                 new ViewItem(
                         "LED resistor calculator",
-                        MaterialDesignIcon.DASHBOARD.graphic(),
+                        MaterialDesignIcon.LIGHTBULB_OUTLINE.graphic(),
                         SECONDARY_VIEW),
                 new ViewItem(
                         "About",
-                        MaterialDesignIcon.DASHBOARD.graphic(),
+                        MaterialDesignIcon.INFO.graphic(),
                         THIRD_VIEW));
 
         if (Platform.isDesktop()) {
