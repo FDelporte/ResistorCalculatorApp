@@ -7,17 +7,15 @@ import java.io.IOException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class About extends View {
 
     public About() {
-        this.getStylesheets().add("be/webtechie/view/about.css");
+        getStylesheets().add(About.class.getResource("about.css").toExternalForm());
 
         TextArea about = new TextArea("This application is based on a Java Maven library "
                 + " and JavaFX example application which are part of the book"
@@ -68,10 +66,11 @@ public class About extends View {
         });
 
         VBox holder = new VBox();
+        holder.getStyleClass().add("mainbox");
         holder.setPadding(new Insets(5));
         holder.setSpacing(15);
         holder.getChildren().addAll(about, buttons, cover, btWebtechie);
-        this.getChildren().add(holder);
+        setCenter(holder);
     }
 
     @Override
