@@ -1,0 +1,30 @@
+# Inspired by:
+# https://github.com/Apple-Actions/Example-iOS/blob/master/.github/workflows/test.yml
+# https://docs.gluonhq.com/client/0.1.33/#_ios
+
+name: Mac
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '11.7.0'
+    - uses: actions/checkout@v2
+    - name: Setup GraalVM environment
+      uses: DeLaGuardo/setup-graalvm@master
+      with:
+        graalvm-version: 20.2.0.java11
+    - name: Build JAR with Maven
+      run: mvn -B package
+    - name: Build and package as iOS application with Gluon
+      run: mvn client:build client:package
+      env:
+        GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/

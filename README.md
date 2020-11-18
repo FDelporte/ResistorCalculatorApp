@@ -2,6 +2,7 @@
 
 ![Linux JAR and Native](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Linux%20JAR%20and%20Native/badge.svg)
 ![Linux Android](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Linux%20Android/badge.svg)
+![Mac](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Mac/badge.svg)
 ![iOS](https://github.com/FDelporte/ResistorCalculatorApp/workflows/iOS/badge.svg)
 ![Windows](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Windows/badge.svg)
 
