@@ -2,7 +2,7 @@
 # https://github.com/Apple-Actions/Example-iOS/blob/master/.github/workflows/test.yml
 # https://docs.gluonhq.com/client/0.1.33/#_ios
 
-name: Mac
+name: MacOS
 
 on:
   push:
@@ -22,9 +22,19 @@ jobs:
       uses: DeLaGuardo/setup-graalvm@master
       with:
         graalvm-version: 20.2.0.java11
+    - name: Make staging directory
+      run: mkdir staging
     - name: Build JAR with Maven
       run: mvn -B package
-    - name: Build and package as iOS application with Gluon
+    - name: Build and package as MacOS application with Gluon
       run: mvn client:build client:package
       env:
         GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/
+    - name: Copy native client to staging
+      run: cp -r target/client/ staging
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: staging
+
