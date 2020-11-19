@@ -93,7 +93,7 @@
                 <artifactId>client-maven-plugin</artifactId>
                 <version>${client.plugin.version}</version>
                 <configuration>
-                    <verbose>false</verbose>
+                    <verbose>true</verbose>
                     <target>${client.target}</target>
                     <attachList>
                         <list>display</list>

@@ -22,7 +22,7 @@ public class About extends View {
                 + "\"Getting Started with Java on the Raspberry Pi\""
                 + " written by Frank Delporte.\n\n"
                 + "This book is available as ebook on Leanpub"
-                + " and paper book on Elektor");
+                + " and paper book on Elektor.");
         about.getStyleClass().add("about");
         about.setWrapText(true);
 
