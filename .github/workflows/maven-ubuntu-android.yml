@@ -33,10 +33,6 @@ jobs:
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
         target: 'android'
-#    - name: Build and package as Android application with Gluon
-#      run: mvn -Pandroid client:build client:package
-#      env:
-#        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
     - name: Copy native clients to staging
       run: cp -r target/client/aarch64-android/gvm/*.apk staging
     - name: Upload

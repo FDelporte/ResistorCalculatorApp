@@ -39,10 +39,6 @@ jobs:
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
         target: 'ios'
-#    - name: Build and package as iOS application with Gluon
-#      run: mvn -Pios client:build client:package
-#      env:
-#        GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/
 #        IOS_SIGNING_IDENTITY: ${{ secrets.IOS_SIGNING_IDENTITY }}
 #        IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
     - uses: Apple-Actions/upload-testflight-build@master

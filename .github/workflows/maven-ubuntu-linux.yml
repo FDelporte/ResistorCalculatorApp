@@ -34,11 +34,7 @@ jobs:
       uses: gluonhq/gluon-build@v1
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
-        target: 'linux'
-#    - name: Build and package as Linux application with Gluon
-#      run: mvn client:build client:package
-#      env:
-#        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
+        target: 'desktop'
     - name: Copy native client to staging
       run: cp -r target/client/x86_64-linux/Resistor* staging
     - name: Upload

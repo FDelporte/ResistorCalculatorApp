@@ -30,11 +30,7 @@ jobs:
       uses: gluonhq/gluon-build@v1
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
-        target: 'macos'
-#    - name: Build and package as MacOS application with Gluon
-#      run: mvn client:build client:package
-#      env:
-#        GRAALVM_HOME: /System/Volumes/Data/Users/runner/hostedtoolcache/GraalVM/20.2.0-java11/x64/
+        target: 'desktop'
     - name: Copy native client to staging
       run: cp -r target/client/x86_64-darwin/Resistor* staging
     - name: Upload
