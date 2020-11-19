@@ -28,10 +28,15 @@ jobs:
       run: mkdir staging
     - name: Build JAR with Maven
       run: mvn -B package
-    - name: Build and package as Android application with Gluon
-      run: mvn -Pandroid client:build client:package
-      env:
-        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
+    - name: Gluon Build
+      uses: gluonhq/gluon-build@v1
+      with:
+        gluon-license: ${{ secrets.GLUON_LICENSE }}
+        target: 'android'
+#    - name: Build and package as Android application with Gluon
+#      run: mvn -Pandroid client:build client:package
+#      env:
+#        GRAALVM_HOME: /opt/hostedtoolcache/GraalVM/20.2.0-java11/x64
     - name: Copy native clients to staging
       run: cp -r target/client/aarch64-android/gvm/*.apk staging
     - name: Upload
