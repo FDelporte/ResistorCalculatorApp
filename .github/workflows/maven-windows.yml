@@ -25,10 +25,11 @@ jobs:
           graalvm-version: 20.2.0.java11
       - name: Make staging directory
         run: mkdir staging
-      - name: Build and package as Windows application with Gluon
-        run: mvn client:build client:package
-        env:
-          GRAALVM_HOME: C:\hostedtoolcache\windows\GraalVM\20.2.0-java11\x64
+      - name: Gluon Build
+        uses: gluonhq/gluon-build@v1
+        with:
+          gluon-license: ${{ secrets.GLUON_LICENSE }}
+          target: 'desktop'
       - name: Copy native client to staging
         run: cp -r target/client/x86_64-windows/*.exe staging
       - name: Upload
