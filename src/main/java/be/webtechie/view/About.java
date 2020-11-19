@@ -1,10 +1,12 @@
 package be.webtechie.view;
 
+import com.gluonhq.attach.browser.BrowserService;
+import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import java.io.IOException;
-import javafx.geometry.Insets;
+import java.net.URISyntaxException;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -22,7 +24,7 @@ public class About extends View {
                 + "\"Getting Started with Java on the Raspberry Pi\""
                 + " written by Frank Delporte.\n\n"
                 + "This book is available as ebook on Leanpub"
-                + " and paper book on Elektor");
+                + " and paper book on Elektor.");
         about.getStyleClass().add("about");
         about.setWrapText(true);
 
@@ -30,23 +32,9 @@ public class About extends View {
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(5);
         Button btLeanpub = new Button("View on Leanpub");
-        btLeanpub.setOnAction(e -> {
-            try {
-                new ProcessBuilder("x-www-browser", "https://leanpub.com/gettingstartedwithjavaontheraspberrypi")
-                        .start();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });
+        btLeanpub.setOnAction(e -> openURL("https://leanpub.com/gettingstartedwithjavaontheraspberrypi"));
         Button btElektor = new Button("View on Elektor");
-        btElektor.setOnAction(e -> {
-            try {
-                new ProcessBuilder("x-www-browser",
-                        "https://www.elektor.com/getting-started-with-java-on-the-raspberry-pi").start();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });
+        btElektor.setOnAction(e -> openURL("https://www.elektor.com/getting-started-with-java-on-the-raspberry-pi"));
         buttons.getChildren().addAll(btLeanpub, btElektor);
 
         ImageView cover = new ImageView("be/webtechie/view/ebook-paperbook.jpg");
@@ -56,19 +44,24 @@ public class About extends View {
 
         Button btWebtechie = new Button("Read more on webtechie.be");
         btWebtechie.setStyle("-fx-min-width: 325px; -fx-max-width: 325px;");
-        btWebtechie.setOnAction(e -> {
-            try {
-                new ProcessBuilder("x-www-browser",
-                        "https://www.webtechie.be").start();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        });
+        btWebtechie.setOnAction(e -> openURL("https://www.webtechie.be"));
 
         VBox holder = new VBox();
         holder.getStyleClass().add("mainbox");
         holder.getChildren().addAll(about, buttons, cover, btWebtechie);
         setCenter(holder);
+    }
+
+    private void openURL(String url) {
+        Services.get(BrowserService.class).ifPresent(service -> {
+            try {
+                service.launchExternalBrowser(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override

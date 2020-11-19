@@ -62,6 +62,11 @@
             <artifactId>util</artifactId>
             <version>${attach.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>browser</artifactId>
+            <version>${attach.version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -93,13 +98,14 @@
                 <artifactId>client-maven-plugin</artifactId>
                 <version>${client.plugin.version}</version>
                 <configuration>
-                    <verbose>false</verbose>
+                    <verbose>true</verbose>
                     <target>${client.target}</target>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
                         <list>statusbar</list>
                         <list>storage</list>
+                        <list>browser</list>
                     </attachList>
                     <mainClass>${mainClassName}</mainClass>
                     <releaseConfiguration>

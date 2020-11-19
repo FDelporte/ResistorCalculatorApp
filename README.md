@@ -34,7 +34,7 @@ Please checkout the prerequisites to run this application as a Maven project [at
 ## How to use on development PC
 
 > **Note**: The following are command line instructions. For IDE specific instructions please checkout
-[IDE documentation](https://docs.gluonhq.com/client/#_ide) of the client plugin.
+[IDE documentation](https://docs.gluonhq.com/#getting-started-ide-plugins) of the client plugin.
 
 These applications can run on the JVM on desktop platforms. To run the application, execute the following command:
 
@@ -78,3 +78,7 @@ Here are some helpful links:
 * [Client Maven Plugin](https://github.com/gluonhq/client-maven-plugin)
 * [Client Gradle Plugin](https://github.com/gluonhq/client-gradle-plugin)
 
+# https://github.com/marketplace/actions/setup-msbuild
+# https://github.com/microsoft/setup-msbuild
+# https://docs.gluonhq.com/#_windows
+# https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
