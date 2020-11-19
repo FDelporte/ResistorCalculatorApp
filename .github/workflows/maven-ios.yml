@@ -1,7 +1,3 @@
-# Inspired by:
-# https://github.com/Apple-Actions/Example-iOS/blob/master/.github/workflows/test.yml
-# https://docs.gluonhq.com/client/0.1.33/#_ios
-
 name: iOS
 
 on:

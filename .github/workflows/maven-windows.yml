@@ -1,7 +1,3 @@
-# https://github.com/marketplace/actions/setup-msbuild
-# https://github.com/microsoft/setup-msbuild
-# https://docs.gluonhq.com/#_windows
-
 name: Windows
 
 on:
