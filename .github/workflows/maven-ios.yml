@@ -28,15 +28,17 @@ jobs:
         issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
         api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
         api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
-    - name: Build JAR with Maven
-      run: mvn -B package
-    - name: Gluon Build
-      uses: gluonhq/gluon-build@v1
+
+    - name: Gluon License
+      uses: gluonhq/gluon-build-license@v1
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
-        target: 'ios'
-#        IOS_SIGNING_IDENTITY: ${{ secrets.IOS_SIGNING_IDENTITY }}
-#        IOS_PROVISIONING_PROFILE: ${{ secrets.IOS_PROVISIONING_PROFILE }}
+    
+    - name: Gluon Build
+      run: mvn -Pios client:build client:package
+      env:
+        GRAALVM_HOME: ${{ env.JAVA_HOME }}
+
     - uses: Apple-Actions/upload-testflight-build@master
       with:
         app-path: target/client/arm64-ios/Resistor Calculator.ipa
