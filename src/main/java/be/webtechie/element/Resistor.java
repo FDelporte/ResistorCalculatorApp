@@ -71,7 +71,8 @@ public class Resistor extends Pane {
     }
 
     public void setColors(List<ColorCode> colors) {
-        bands.getChildren().removeAll();
+        // bands.getChildren().removeAll();
+        bands.getChildren().clear();
 
         if (colors.size() < 4) {
             return;
