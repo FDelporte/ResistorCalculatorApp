@@ -58,5 +58,5 @@ jobs:
       with:
         serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON }}
         packageName: be.webtechie.resistorcalculatorapp
-        releaseFile: target/client/aarch64-android/gvm/Resistor Calculator.apk
-        track: alpha
+        releaseFiles: target/client/aarch64-android/gvm/Resistor Calculator.apk
+        track: beta
