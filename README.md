@@ -83,12 +83,6 @@ To configure the client plugin, please checkout the [Configuration documentation
 
 Here are some helpful links:
 
-* [Gluon Client documentation](https://docs.gluonhq.com/client)
-* [Gluon Mobile documentation](https://docs.gluonhq.com/mobile)
-* [Client Maven Plugin](https://github.com/gluonhq/client-maven-plugin)
-* [Client Gradle Plugin](https://github.com/gluonhq/client-gradle-plugin)
-
-# https://github.com/marketplace/actions/setup-msbuild
-# https://github.com/microsoft/setup-msbuild
-# https://docs.gluonhq.com/#_windows
-# https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+* [Gluon documentation website](https://docs.gluonhq.com)
+* Gluon on GitHub: [Client Maven Plugin](https://github.com/gluonhq/client-maven-plugin) and [Client Gradle Plugin](https://github.com/gluonhq/client-gradle-plugin)
+* [GitHub: Building and testing Java with Maven](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven)
