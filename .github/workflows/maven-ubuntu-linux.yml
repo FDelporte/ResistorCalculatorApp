@@ -23,11 +23,14 @@ jobs:
       run: mvn -B package
     - name: Copy JAR to staging
       run: cp target/*.jar staging
-    - name: Gluon Build
-      uses: gluonhq/gluon-build@v1
+    - name: Gluon License
+      uses: gluonhq/gluon-build-license@v1
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
-        target: 'desktop'
+    - name: Gluon Build
+      run: mvn -Pdesktop client:build client:package
+      env:
+        GRAALVM_HOME: ${{ env.JAVA_HOME }}    
     - name: Copy native client to staging
       run: cp -r target/client/x86_64-linux/Resistor* staging
     - name: Upload

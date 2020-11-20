@@ -109,10 +109,14 @@
                     </attachList>
                     <mainClass>${mainClassName}</mainClass>
                     <releaseConfiguration>
-                        <bundleVersion>${env.GITHUB_RUN_ID}</bundleVersion>
+                        <bundleVersion>${env.GITHUB_RUN_NUMBER}</bundleVersion>
                         <skipSigning>${skipIOSSigning}</skipSigning>
                         <providedSigningIdentity>${env.IOS_SIGNING_IDENTITY}</providedSigningIdentity>
                         <providedProvisioningProfile>${env.IOS_PROVISIONING_PROFILE}</providedProvisioningProfile>
+                        <providedKeyStorePath>${env.GLUON_ANDROID_KEYSTOREPATH}</providedKeyStorePath>
+                        <providedKeyStorePassword>${env.GLUON_ANDROID_KEYSTORE_PASSWORD}</providedKeyStorePassword>
+                        <providedKeyAlias>${env.GLUON_ANDROID_KEYALIAS}</providedKeyAlias>
+                        <providedKeyAliasPassword>${env.GLUON_ANDROID_KEYALIAS_PASSWORD}</providedKeyAliasPassword>
                     </releaseConfiguration>
                 </configuration>
             </plugin>
