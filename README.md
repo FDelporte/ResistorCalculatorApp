@@ -1,17 +1,17 @@
 # Resistor calculator application for mobile phone and desktop
 
-#### Status of actions in this repository
-
 ![Linux JAR and Native](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Linux%20JAR%20and%20Native/badge.svg)
 ![MacOS](https://github.com/FDelporte/ResistorCalculatorApp/workflows/MacOS/badge.svg)
 ![Windows](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Windows/badge.svg)
+![Linux Android](https://github.com/FDelporte/ResistorCalculatorApp/workflows/Linux%20Android/badge.svg)
+![iOS](https://github.com/FDelporte/ResistorCalculatorApp/workflows/iOS/badge.svg)
 
-#### Status of actions in the fork of [Erwin Morrhey (Gluon)](https://github.com/erwin1/ResistorCalculatorApp)
+## About the application
 
-![Linux Android](https://github.com/erwin1/ResistorCalculatorApp/workflows/Linux%20Android/badge.svg)
-![iOS](https://github.com/erwin1/ResistorCalculatorApp/workflows/iOS/badge.svg)
+Proof-of-concept application created with JavaFX as a true "write once, run everywhere".
+Uses Gluon tools and GitHub actions to build native applications for all platforms.
 
-## Based on
+### Based on
 
 * The Maven library [Resistor calculator](https://github.com/FDelporte/ResistorCalculator) 
 as described on ["Resistor color codes and calculations as a Java Maven library"](https://webtechie.be/post/2019-11-25-resistor-color-codes-and-calculations-a-java-maven-library/).
@@ -25,23 +25,30 @@ as described on ["Starting a JavaFX Project with Gluon Tools" (foojay.io)](https
  
 Gluon Mobile Applications are Java applications written in JavaFX. These applications ensure that developers can create high performance, great looking, and cloud connected mobile apps from a single Java code base.
 
+### Get the app
+
+This application is published to the [Google Play](https://play.google.com/store/apps/details?id=be.webtechie.resistorcalculatorapp)
+and [Apple App Store](https://apps.apple.com/us/app/gluon-resistor-calculator/id1540638756) from [the fork on GluonHQ](https://github.com/gluonhq/ResistorCalculatorApp) 
+
+![QR code to get the application](images/onlink_to_resistorcalc_small.png)
+
 ### Screens and functionalities
 
 The application provides two views.
 
 #### Calculate the value of a resistor based on the color bands
 
-![Resistor color bands screen](screenshots/color-bands.png)
+![Resistor color bands screen](images/color-bands.png)
 
 #### Calculate the required resistor value for a LED in an electronics project
 
-![LED resistor value screen](screenshots/led-resistor.png)
+![LED resistor value screen](images/led-resistor.png)
 
 ## Pre-requisites
 
 Please checkout the prerequisites to run this application as a Maven project [at the Gluon website](https://github.com/gluonhq/client-maven-plugin#requirements).
 
-## How to use on development PC
+## How to use the code on development PC
 
 > **Note**: The following are command line instructions. For IDE specific instructions please checkout
 [IDE documentation](https://docs.gluonhq.com/#getting-started-ide-plugins) of the client plugin.
@@ -66,7 +73,7 @@ For more details, please check
 
 ## GitHub Actions
 
-Seperate GitHub Actions files are included with this project:
+Separate GitHub Actions files are included in this repository:
 
 * [maven-ios.yml](.github/workflows/maven-ios.yml): creates iPhone app, not fully working in this repository as no 
 Apple developer secrets and other required settings are available here. But you can use this as a reference how to set this up.
