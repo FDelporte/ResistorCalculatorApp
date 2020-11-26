@@ -11,6 +11,13 @@
 Proof-of-concept application created with JavaFX as a true "write once, run everywhere".
 Uses Gluon tools and GitHub actions to build native applications for all platforms.
 
+![Diagram showing the flow from a single JavaFX code through GitHub actions to multiple applications](images/github_actions_gluon_diagram.jpg)
+
+For more info, check these posts which describe the full flow in detail:
+
+* [Building native applications for all PC and mobile platforms from a single JavaFX project with Gluon Mobile and GitHub Actions (webtechie.be)](https://webtechie.be/post/2020-11-24-javafx-gluon-mobile-github-actions/)
+* [Use GitHub Actions to automate your Gluon build and release cycle (gluonhq:com)](https://gluonhq.com/use-github-actions-to-automate-your-gluon-build-and-release-cycle/)
+
 ### Based on
 
 * The Maven library [Resistor calculator](https://github.com/FDelporte/ResistorCalculator) 
