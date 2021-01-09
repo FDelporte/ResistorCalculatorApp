@@ -93,6 +93,14 @@ Apple developer secrets and other required settings are available here. But you 
 
 To configure the client plugin, please checkout the [Configuration documentation](https://docs.gluonhq.com/client/#_configuration).
 
+## Gradle
+
+Use Gradle to build native image:
+
+	./gradlew build nativeCompile nativeLink
+	
+Executable found in `build/client/XXXX/resistor-calculator-app`
+
 ## More information
 
 Here are some helpful links:
