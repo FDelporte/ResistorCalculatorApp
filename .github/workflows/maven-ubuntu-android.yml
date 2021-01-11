@@ -11,18 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
     - name: Setup GraalVM environment
       uses: DeLaGuardo/setup-graalvm@master
       with:
         graalvm-version: 20.2.0.java11
-
+    - name: APT update
+      run: sudo apt update
     - name: Install libraries
       run: sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
-
     - name: Make staging directory
       run: mkdir staging
-
     - name: Setup Android Keystore
       if: ${{ github.repository_owner == 'gluonhq' }}
       id: android_keystore_file
@@ -30,12 +28,10 @@ jobs:
       with:
         fileName: 'my.keystore'
         encodedString: ${{ secrets.GLUON_ANDROID_KEYSTORE_BASE64 }}
-
     - name: Gluon License
       uses: gluonhq/gluon-build-license@v1
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
-    
     - name: Gluon Build
       run: mvn -DconsoleProcessLog=true -Pandroid client:build client:package
       env:
@@ -44,16 +40,13 @@ jobs:
         GLUON_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYSTORE_PASSWORD }}
         GLUON_ANDROID_KEYALIAS: ${{ secrets.GLUON_ANDROID_KEYALIAS }}
         GLUON_ANDROID_KEYALIAS_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYALIAS_PASSWORD }}
-
     - name: Copy native clients to staging
       run: cp -r target/client/aarch64-android/gvm/Resistor\ Calculator.apk staging
-
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
         name: Package
         path: staging
-
     - name: Upoad to Google Play
       if: ${{ github.repository_owner == 'gluonhq' }}
       uses: r0adkll/upload-google-play@v1
