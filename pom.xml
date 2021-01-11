@@ -12,8 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>15</javafx.version>
-        <attach.version>4.0.9</attach.version>
-        <client.plugin.version>0.1.35-SNAPSHOT</client.plugin.version>
+        <client.plugin.version>0.1.35</client.plugin.version>
         <javafx.plugin.version>0.0.5</javafx.plugin.version>
         <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
         <skipIOSSigning>false</skipIOSSigning>
@@ -47,6 +46,11 @@
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
             <artifactId>display</artifactId>
+            <version>${attach.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>orientation</artifactId>
             <version>${attach.version}</version>
         </dependency>
         <dependency>
