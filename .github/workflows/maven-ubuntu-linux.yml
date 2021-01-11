@@ -16,7 +16,7 @@ jobs:
       with:
         graalvm-version: 20.2.0.java11
     - name: APT update
-      run: sudo apt update  
+      run: sudo apt update
     - name: Install libraries
       run: sudo apt install libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
     - name: Make staging directory
