@@ -68,10 +68,13 @@ mvn javafx:run
 
 The same application can also run natively on any targeted OS, including Android, iOS, Linux, Mac and Windows.
 
-To create a native image, execute the following command:
+To create a native image, execute the following commands (Use sdkman - https://sdkman.io/):
 
 ```
-mvn client:build client:run
+sdk install java 21.0.0.r11-grl
+export GRAALVM_HOME=${SDKMAN_CANDIDATES_DIR}/java/21.0.0.r11-grl
+echo $GRAALVM_HOME
+mvn gluonfx:build gluonfx:run
 ```
 
 > **Note**: The above client commands are target-platform dependent and might change depending on the platform.

@@ -7,19 +7,30 @@ import be.webtechie.resistorcalculator.util.Calculate;
 import be.webtechie.resistorcalculator.util.Convert;
 import be.webtechie.resistorcalculator.util.ResistorValue;
 import be.webtechie.element.ColorBandSelection;
+import com.gluonhq.attach.display.DisplayService;
+import com.gluonhq.attach.orientation.OrientationService;
+import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Optional;
+import javafx.beans.Observable;
 import javafx.css.PseudoClass;
+import javafx.geometry.Dimension2D;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javax.swing.text.html.Option;
 
 public class ColorBandCalculator extends View implements AppEventListener {
 
-    private final static PseudoClass ERROR = PseudoClass.getPseudoClass("error");
+    private static final PseudoClass ERROR = PseudoClass.getPseudoClass("error");
+
+    private final VBox mainHolder = new VBox();
 
     private final ColorBandSelection band1;
     private final ColorBandSelection band2;
@@ -32,12 +43,14 @@ public class ColorBandCalculator extends View implements AppEventListener {
 
     private final Resistor resistor;
 
+    private Optional<Orientation> orientation;
+    private Dimension2D resolution;
+
     public ColorBandCalculator() {
         getStylesheets().add(ColorBandCalculator.class.getResource("colorBandCalculator.css").toExternalForm());
 
-        VBox holder = new VBox();
-        holder.getStyleClass().add("mainbox");
-        setCenter(holder);
+        mainHolder.getStyleClass().add("mainbox");
+        setCenter(mainHolder);
         
         band1 = new ColorBandSelection(1, this);
         band2 = new ColorBandSelection(2, this);
@@ -46,19 +59,74 @@ public class ColorBandCalculator extends View implements AppEventListener {
         band5 = new ColorBandSelection(5, this);
         band6 = new ColorBandSelection(6, this);
 
-        holder.getChildren().addAll(band1, band2, band3, band4, band5, band6);
-
         resistor = new Resistor();
         resistor.setScaleY(0.8);
         resistor.getStyleClass().add("resistor");
-        holder.getChildren().add(resistor);
 
         result = new Label();
         result.setWrapText(true);
         result.getStyleClass().add("result");
-        holder.getChildren().add(result);
 
+        Services.get(OrientationService.class).ifPresent(service -> {
+            service.orientationProperty().addListener(this::orientationChanged);
+            orientation = service.getOrientation();
+            System.out.println("Initial orientation set to: "
+                    + (orientation.isEmpty() ? "unknown" : orientation.get().name()));
+        });
+
+        Services.get(DisplayService.class).ifPresent(service -> {
+            resolution = service.getScreenResolution();
+            System.out.println("Initial resolution set to: "
+                    + (resolution == null ? "unknown" : resolution.getWidth() + "/" + resolution.getHeight()));
+        });
+
+        orientation = Optional.of(Orientation.HORIZONTAL);
+
+        drawLayout();
         onColorChange();
+    }
+
+    private void orientationChanged(Observable observable) {
+        Services.get(OrientationService.class).ifPresent(service -> {
+            orientation = service.getOrientation();
+            System.out.println("Current orientation: "
+                    + (orientation.isEmpty() ? "unknown" : orientation.get().name()));
+            drawLayout();
+        });
+
+        Services.get(DisplayService.class).ifPresent(service -> {
+            resolution = service.getScreenResolution();
+            System.out.println("Current resolution set to: "
+                    + (resolution == null ? "unknown" : resolution.getWidth() + "/" + resolution.getHeight()));
+        });
+    }
+
+    private void drawLayout() {
+        mainHolder.getChildren().clear();
+        if (orientation == null || orientation.isEmpty() || orientation.get().equals(Orientation.VERTICAL)) {
+            // Portrait mode
+            mainHolder.getChildren().addAll(band1, band2, band3, band4, band5, band6, resistor, result);
+        } else {
+            // Landscape mode
+            double columnWidth = resolution == null ? 300 : (resolution.getWidth() / 2) - 25;
+            System.out.println("This width: " + this.getWidth());
+            System.out.println("Column width: " + columnWidth);
+            VBox colors = new VBox();
+            colors.setMinWidth(columnWidth);
+            colors.setPrefWidth(columnWidth);
+            colors.setMaxWidth(columnWidth);
+            band1.setMaxWidth(columnWidth);
+            colors.getChildren().addAll(band1, band2, band3, band4, band5, band6);
+            VBox other = new VBox();
+            other.setMinWidth(columnWidth);
+            other.setPrefWidth(columnWidth);
+            other.setMaxWidth(columnWidth);
+            other.getChildren().addAll(resistor, result);
+            HBox combined = new HBox();
+            combined.setSpacing(25);
+            combined.getChildren().addAll(colors, other);
+            mainHolder.getChildren().add(combined);
+        }
     }
 
     /**
@@ -74,6 +142,7 @@ public class ColorBandCalculator extends View implements AppEventListener {
                 || band4.getSelection() == ColorCode.NONE) {
             result.setText("Minimal first 4 bands are needed");
             result.pseudoClassStateChanged(ERROR, true);
+            resistor.setColors(new ArrayList<>());
             return;
         }
         colors.add(band1.getSelection());

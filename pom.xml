@@ -4,18 +4,23 @@
 
     <groupId>be.webtechie</groupId>
     <artifactId>resistor-calculator-app</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>Resistor Calculator</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
         <maven.compiler.release>11</maven.compiler.release>
+
+        <!-- Dependency versions -->
         <javafx.version>15</javafx.version>
         <attach.version>4.0.9</attach.version>
-        <client.plugin.version>0.1.38</client.plugin.version>
-        <javafx.plugin.version>0.0.5</javafx.plugin.version>
-        <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
+
+        <!-- Plugin versions -->
+        <javafx.plugin.version>0.0.7</javafx.plugin.version>
+        <gluonfx.plugin.version>1.0.5</gluonfx.plugin.version>
+
         <skipIOSSigning>false</skipIOSSigning>
     </properties>
 
@@ -107,8 +112,8 @@
 
             <plugin>
                 <groupId>com.gluonhq</groupId>
-                <artifactId>client-maven-plugin</artifactId>
-                <version>${client.plugin.version}</version>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>${gluonfx.plugin.version}</version>
                 <configuration>
                     <verbose>true</verbose>
                     <target>${client.target}</target>

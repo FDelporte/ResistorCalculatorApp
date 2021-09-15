@@ -14,7 +14,7 @@ jobs:
     - name: Setup GraalVM environment
       uses: DeLaGuardo/setup-graalvm@master
       with:
-        graalvm: '21.0.0.2'
+        graalvm: '21.2.0'
         java: 'java11'
     - name: APT update
       run: sudo apt update
@@ -34,15 +34,15 @@ jobs:
       with:
         gluon-license: ${{ secrets.GLUON_LICENSE }}
     - name: Gluon Build
-      run: mvn -DconsoleProcessLog=true -Pandroid client:build client:package
+      run: mvn -DconsoleProcessLog=true -Pandroid gluonfx:build gluonfx:package
       env:
         GRAALVM_HOME: ${{ env.JAVA_HOME }}
         GLUON_ANDROID_KEYSTOREPATH: ${{ steps.android_keystore_file.outputs.filePath }}
         GLUON_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYSTORE_PASSWORD }}
         GLUON_ANDROID_KEYALIAS: ${{ secrets.GLUON_ANDROID_KEYALIAS }}
         GLUON_ANDROID_KEYALIAS_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYALIAS_PASSWORD }}
-    - name: Copy native clients to staging
-      run: cp -r target/client/aarch64-android/gvm/Resistor\ Calculator.apk staging
+    - name: Copy native app to staging
+      run: cp -r target/gluonfx/aarch64-android/gvm/Resistor\ Calculator.apk staging
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
@@ -54,5 +54,5 @@ jobs:
       with:
         serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON }}
         packageName: be.webtechie.resistorcalculatorapp
-        releaseFiles: target/client/aarch64-android/gvm/Resistor Calculator.apk
+        releaseFiles: target/gluonfx/aarch64-android/gvm/Resistor Calculator.apk
         track: beta
