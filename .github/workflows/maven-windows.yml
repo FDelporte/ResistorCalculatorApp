@@ -18,7 +18,7 @@ jobs:
       - name: Setup GraalVM environment
         uses: DeLaGuardo/setup-graalvm@master
         with:
-          graalvm: '21.0.0.2'
+          graalvm: '21.2.0'
           java: 'java11'
       - name: Make staging directory
         run: mkdir staging
@@ -30,7 +30,7 @@ jobs:
         run: mvn -Pdesktop gluonfx:build gluonfx:package
         env:
           GRAALVM_HOME: ${{ env.JAVA_HOME }}
-      - name: Copy native image to staging
+      - name: Copy native app to staging
         run: cp -r target/gluonfx/x86_64-windows/*.exe staging
       - name: Upload
         uses: actions/upload-artifact@v2
