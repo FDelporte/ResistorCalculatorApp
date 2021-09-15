@@ -11,20 +11,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
-        <javafx.version>15</javafx.version>
-        <attach.version>4.0.9</attach.version>
-        <client.plugin.version>0.1.38</client.plugin.version>
-        <javafx.plugin.version>0.0.5</javafx.plugin.version>
+        <javafx.version>17</javafx.version>
+        <attach.version>4.0.12</attach.version>
+        <gluonfx.plugin.version>1.0.5</gluonfx.plugin.version>
+        <javafx.plugin.version>0.0.7</javafx.plugin.version>
         <mainClassName>be.webtechie.ResistorCalculatorApp</mainClassName>
         <skipIOSSigning>false</skipIOSSigning>
     </properties>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -42,7 +35,7 @@
         <dependency>
             <groupId>com.gluonhq</groupId>
             <artifactId>charm-glisten</artifactId>
-            <version>6.0.5</version>
+            <version>6.0.6</version>
         </dependency>
         <dependency>
             <groupId>com.gluonhq.attach</groupId>
@@ -107,11 +100,11 @@
 
             <plugin>
                 <groupId>com.gluonhq</groupId>
-                <artifactId>client-maven-plugin</artifactId>
-                <version>${client.plugin.version}</version>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>${gluonfx.plugin.version}</version>
                 <configuration>
                     <verbose>true</verbose>
-                    <target>${client.target}</target>
+                    <target>${gluonfx.target}</target>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
@@ -138,44 +131,15 @@
 
     <profiles>
         <profile>
-            <id>desktop</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <client.target>host</client.target>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>display</artifactId>
-                    <version>${attach.version}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>lifecycle</artifactId>
-                    <version>${attach.version}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-                <dependency>
-                    <groupId>com.gluonhq.attach</groupId>
-                    <artifactId>storage</artifactId>
-                    <version>${attach.version}</version>
-                    <classifier>desktop</classifier>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>ios</id>
             <properties>
-                <client.target>ios</client.target>
+                <gluonfx.target>ios</gluonfx.target>
             </properties>
         </profile>
         <profile>
             <id>android</id>
             <properties>
-                <client.target>android</client.target>
+                <gluonfx.target>android</gluonfx.target>
             </properties>
         </profile>
     </profiles>

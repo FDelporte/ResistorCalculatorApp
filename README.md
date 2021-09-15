@@ -53,17 +53,17 @@ The application provides two views.
 
 ## Pre-requisites
 
-Please checkout the prerequisites to run this application as a Maven project [at the Gluon website](https://github.com/gluonhq/client-maven-plugin#requirements).
+Please checkout the prerequisites to run this application as a Maven project [at the Gluon website](https://github.com/gluonhq/gluonfx-maven-plugin#requirements).
 
 ## How to use the code on development PC
 
 > **Note**: The following are command line instructions. For IDE specific instructions please checkout
-[IDE documentation](https://docs.gluonhq.com/#getting-started-ide-plugins) of the client plugin.
+[IDE documentation](https://docs.gluonhq.com/#getting-started-ide-plugins) of the gluonfx plugin.
 
 These applications can run on the JVM on desktop platforms. To run the application, execute the following command:
 
 ```
-mvn javafx:run
+mvn gluonfx:run
 ```
 
 The same application can also run natively on any targeted OS, including Android, iOS, Linux, Mac and Windows.
@@ -71,12 +71,12 @@ The same application can also run natively on any targeted OS, including Android
 To create a native image, execute the following command:
 
 ```
-mvn client:build client:run
+mvn gluonfx:build gluonfx:run
 ```
 
-> **Note**: The above client commands are target-platform dependent and might change depending on the platform.
+> **Note**: The above gluonfx commands are target-platform dependent and might change depending on the platform.
 For more details, please check
-[Client Maven Goals](https://github.com/gluonhq/client-maven-plugin#2-goals).
+[GluonFX Maven Goals](https://docs.gluonhq.com/#_goals).
 
 ## GitHub Actions
 
@@ -91,7 +91,7 @@ Apple developer secrets and other required settings are available here. But you 
 
 ## Configuration
 
-To configure the client plugin, please checkout the [Configuration documentation](https://docs.gluonhq.com/client/#_configuration).
+To configure the GluonFX plugin, please checkout the [Configuration documentation](https://docs.gluonhq.com/#_configuration).
 
 ## Gradle
 
@@ -99,12 +99,12 @@ Use Gradle to build native image:
 
 	./gradlew build nativeCompile nativeLink
 	
-Executable found in `build/client/XXXX/resistor-calculator-app`
+Executable found in `build/gluonfx/XXXX/resistor-calculator-app`
 
 ## More information
 
 Here are some helpful links:
 
 * [Gluon documentation website](https://docs.gluonhq.com)
-* Gluon on GitHub: [Client Maven Plugin](https://github.com/gluonhq/client-maven-plugin) and [Client Gradle Plugin](https://github.com/gluonhq/client-gradle-plugin)
+* Gluon on GitHub: [GluonFX Maven Plugin](https://github.com/gluonhq/gluonfx-maven-plugin) and [GluonFX Gradle Plugin](https://github.com/gluonhq/gluonfx-gradle-plugin)
 * [GitHub: Building and testing Java with Maven](https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven)
