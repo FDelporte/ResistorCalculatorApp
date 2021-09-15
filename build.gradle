@@ -1,13 +1,13 @@
 plugins  {
 	id 'application'
 	id 'eclipse'
-	id 'org.openjfx.javafxplugin' version '0.0.9'
-	id 'com.gluonhq.client-gradle-plugin' version '0.1.35'
+	id 'org.openjfx.javafxplugin' version '0.0.10'
+	id 'com.gluonhq.gluonfx-gradle-plugin' version '1.0.5'
 }
 
 ext {
-	gluonVersion = "4.0.9"
-	javafxVersion = "15.0.1"
+	gluonVersion = "4.0.12"
+	javafxVersion = "17"
 }
 
 repositories {
@@ -18,9 +18,8 @@ repositories {
 }
 
 dependencies {
-//	implementation "org.openjfx:javafx-controls:15"
 	implementation "be.webtechie:resistor-calculator:0.1.4"
-	implementation "com.gluonhq:charm-glisten:6.0.5"
+	implementation "com.gluonhq:charm-glisten:6.0.6"
 	implementation "com.gluonhq.attach:statusbar:${gluonVersion}"
 	implementation "com.gluonhq.attach:browser:${gluonVersion}"
 }
@@ -32,9 +31,9 @@ javafx {
     modules = [ "javafx.controls" ]
 }
 
-gluonClient {
+gluonfx {
     attachConfig {
     	version = "${gluonVersion}"
-    	services 'display', 'lifecycle', 'storage'
+    	services 'display', 'lifecycle', 'statusbar', 'storage'
 	}
 }

@@ -41,7 +41,7 @@ jobs:
         GLUON_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYSTORE_PASSWORD }}
         GLUON_ANDROID_KEYALIAS: ${{ secrets.GLUON_ANDROID_KEYALIAS }}
         GLUON_ANDROID_KEYALIAS_PASSWORD: ${{ secrets.GLUON_ANDROID_KEYALIAS_PASSWORD }}
-    - name: Copy native app to staging
+    - name: Copy native images to staging
       run: cp -r target/gluonfx/aarch64-android/gvm/Resistor\ Calculator.apk staging
     - name: Upload
       uses: actions/upload-artifact@v2

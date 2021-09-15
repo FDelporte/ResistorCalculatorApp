@@ -34,7 +34,7 @@ jobs:
       run: mvn -Pdesktop gluonfx:build gluonfx:package
       env:
         GRAALVM_HOME: ${{ env.JAVA_HOME }}    
-    - name: Copy native app to staging
+    - name: Copy native image to staging
       run: cp -r target/gluonfx/x86_64-linux/Resistor* staging
     - name: Upload
       uses: actions/upload-artifact@v2
